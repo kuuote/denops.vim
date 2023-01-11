@@ -37,8 +37,8 @@ function! denops#plugin#wait(plugin, ...) abort
             \ l:options.timeout,
             \))
     endif
-    return -1
   endif
+  return l:ret
 endfunction
 
 function! denops#plugin#wait_async(plugin, callback) abort

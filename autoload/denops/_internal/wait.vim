@@ -39,6 +39,8 @@ else
       endwhile
     catch /^Vim:Interrupt$/
       return -2
+    catch
+      return -3
     endtry
   endfunction
 endif
