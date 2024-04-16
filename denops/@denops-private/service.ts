@@ -102,6 +102,10 @@ export class Service implements Disposable {
       } catch (e) {
         console.error(`Failed to call failure callback '${failure}': ${e}`);
       }
+      await this.#host.batch([
+        ["denops#callback#unregister", success],
+        ["denops#callback#unregister", failure],
+      ]);
     }
   }
 

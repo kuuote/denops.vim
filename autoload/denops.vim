@@ -13,12 +13,8 @@ function! denops#request(plugin, method, params) abort
 endfunction
 
 function! denops#request_async(plugin, method, params, success, failure) abort
-  let l:success = denops#callback#register(a:success, {
-        \ 'once': v:true,
-        \})
-  let l:failure = denops#callback#register(a:failure, {
-        \ 'once': v:true,
-        \})
+  let l:success = denops#callback#register(a:success)
+  let l:failure = denops#callback#register(a:failure)
   return denops#_internal#server#chan#notify(
         \ 'invoke',
         \ ['dispatchAsync', [a:plugin, a:method, a:params, l:success, l:failure]],
