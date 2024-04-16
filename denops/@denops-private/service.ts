@@ -93,6 +93,7 @@ export class Service implements Disposable {
       } catch (e) {
         console.error(`Failed to call success callback '${success}': ${e}`);
       }
+      await this.#host.call("denops#callback#unregister", failure);
     } catch (e) {
       try {
         const err = e instanceof Error
@@ -102,6 +103,7 @@ export class Service implements Disposable {
       } catch (e) {
         console.error(`Failed to call failure callback '${failure}': ${e}`);
       }
+      await this.#host.call("denops#callback#unregister", success);
     }
   }
 
